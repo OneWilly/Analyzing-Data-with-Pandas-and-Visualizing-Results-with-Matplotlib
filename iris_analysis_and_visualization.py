@@ -20,19 +20,29 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.datasets import load_iris
 
-# Task 1: Load and Explore the Dataset
-def load_and_explore_data():
+# Save the Iris dataset to a CSV file (one-time operation)
+def save_iris_to_csv():
     """
-    Load the Iris dataset, explore its structure, and check for missing values.
+    Save the Iris dataset to a CSV file for demonstration purposes.
     """
     try:
-        # Load the Iris dataset using sklearn
         iris = load_iris()
-        
-        # Convert the dataset into a pandas DataFrame
         df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
         df['species'] = iris.target
         df['species'] = df['species'].map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
+        df.to_csv('iris_dataset.csv', index=False)
+        print("Iris dataset saved to 'iris_dataset.csv'.")
+    except Exception as e:
+        print(f"An error occurred while saving the dataset: {e}")
+
+# Load the dataset from the CSV file
+def load_and_explore_data_from_csv():
+    """
+    Load the Iris dataset from a CSV file, explore its structure, and check for missing values.
+    """
+    try:
+        # Load the dataset using pandas
+        df = pd.read_csv('iris_dataset.csv')
         
         # Display the first few rows of the dataset
         print("First 5 rows of the dataset:")
@@ -135,8 +145,11 @@ def main():
     """
     Main function to execute all tasks in the assignment.
     """
-    print("Loading and exploring the dataset...")
-    df = load_and_explore_data()
+    print("Saving the Iris dataset to a CSV file...")
+    save_iris_to_csv()
+    
+    print("\nLoading and exploring the dataset from the CSV file...")
+    df = load_and_explore_data_from_csv()
     if df is not None:
         print("\nPerforming basic data analysis...")
         basic_data_analysis(df)
