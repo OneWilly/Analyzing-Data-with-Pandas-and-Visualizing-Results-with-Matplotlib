@@ -1,3 +1,19 @@
+"""
+Iris Dataset Analysis and Visualization
+---------------------------------------
+This script performs the following tasks:
+1. Loads and explores the Iris dataset.
+2. Computes basic data analysis statistics like mean, median, and standard deviation.
+3. Creates various visualizations to explore relationships in the data.
+4. Provides observations and insights after each visualization.
+
+Requirements:
+- pandas
+- matplotlib
+- seaborn
+- scikit-learn
+"""
+
 # Import necessary libraries
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,7 +23,7 @@ from sklearn.datasets import load_iris
 # Task 1: Load and Explore the Dataset
 def load_and_explore_data():
     """
-    Load the Iris dataset, explore its structure, and clean the data if necessary.
+    Load the Iris dataset, explore its structure, and check for missing values.
     """
     try:
         # Load the Iris dataset using sklearn
@@ -22,13 +38,15 @@ def load_and_explore_data():
         print("First 5 rows of the dataset:")
         print(df.head())
         
-        # Check for null values and dataset info
+        # Check the structure of the dataset
         print("\nDataset Info:")
         print(df.info())
+        
+        # Check for missing values
         print("\nNumber of missing values in each column:")
         print(df.isnull().sum())
         
-        # Since Iris dataset has no missing values, no cleaning is required
+        # Since the Iris dataset has no missing values:
         print("\nNo missing values detected. Dataset is clean!")
         
         return df
@@ -51,8 +69,10 @@ def basic_data_analysis(df):
     print(grouped_data)
     
     # Observations
-    print("\nObservation: Virginica species has the highest mean for petal length and width.")
-    
+    print("\nObservations:")
+    print("1. Virginica species has the highest mean for petal length and petal width.")
+    print("2. Setosa species has the smallest mean for all numerical columns.")
+
 # Task 3: Data Visualization
 def visualize_data(df):
     """
@@ -61,42 +81,54 @@ def visualize_data(df):
     # Set a seaborn style for better aesthetics
     sns.set(style="whitegrid")
     
-    # Line chart: Trend of petal length for each species
+    # Line chart: Petal length trend for each species
     plt.figure(figsize=(8, 6))
     for species in df['species'].unique():
         subset = df[df['species'] == species]
         plt.plot(range(len(subset)), subset['petal length (cm)'], label=species)
-    plt.title("Petal Length Trend by Species")
-    plt.xlabel("Index")
-    plt.ylabel("Petal Length (cm)")
-    plt.legend()
-    plt.grid()
+    plt.title("Petal Length Trend by Species", fontsize=14)
+    plt.xlabel("Index", fontsize=12)
+    plt.ylabel("Petal Length (cm)", fontsize=12)
+    plt.legend(title="Species", fontsize=10)
+    plt.grid(alpha=0.5)
     plt.show()
+    print("\nObservation: The line chart shows clear differences in petal length trends across species.")
     
     # Bar chart: Average petal width grouped by species
     plt.figure(figsize=(8, 6))
     sns.barplot(x='species', y='petal width (cm)', data=df, palette="viridis")
-    plt.title("Average Petal Width by Species")
-    plt.xlabel("Species")
-    plt.ylabel("Petal Width (cm)")
+    plt.title("Average Petal Width by Species", fontsize=14)
+    plt.xlabel("Species", fontsize=12)
+    plt.ylabel("Petal Width (cm)", fontsize=12)
     plt.show()
+    print("\nObservation: Virginica species has the largest average petal width.")
     
     # Histogram: Distribution of sepal length
     plt.figure(figsize=(8, 6))
     plt.hist(df['sepal length (cm)'], bins=15, color='skyblue', edgecolor='black')
-    plt.title("Distribution of Sepal Length")
-    plt.xlabel("Sepal Length (cm)")
-    plt.ylabel("Frequency")
+    plt.title("Distribution of Sepal Length", fontsize=14)
+    plt.xlabel("Sepal Length (cm)", fontsize=12)
+    plt.ylabel("Frequency", fontsize=12)
+    plt.grid(alpha=0.5)
     plt.show()
+    print("\nObservation: Most sepal lengths are concentrated between 5 and 6 cm.")
     
     # Scatter plot: Sepal length vs. petal length
     plt.figure(figsize=(8, 6))
     sns.scatterplot(x='sepal length (cm)', y='petal length (cm)', hue='species', data=df, palette="deep")
-    plt.title("Sepal Length vs. Petal Length")
-    plt.xlabel("Sepal Length (cm)")
-    plt.ylabel("Petal Length (cm)")
-    plt.legend()
+    plt.title("Sepal Length vs. Petal Length", fontsize=14)
+    plt.xlabel("Sepal Length (cm)", fontsize=12)
+    plt.ylabel("Petal Length (cm)", fontsize=12)
+    plt.legend(title="Species", fontsize=10)
+    plt.grid(alpha=0.5)
     plt.show()
+    print("\nObservation: There is a strong positive correlation between petal length and sepal length.")
+
+    # Additional visualization: Pairplot for pairwise relationships
+    sns.pairplot(df, hue='species', palette='viridis', diag_kind='hist', height=2.5)
+    plt.suptitle("Pairwise Relationships Among Features", y=1.02, fontsize=16)
+    plt.show()
+    print("\nObservation: Pairplot shows clear separations among species in petal-related dimensions.")
 
 # Main function to execute the tasks
 def main():
