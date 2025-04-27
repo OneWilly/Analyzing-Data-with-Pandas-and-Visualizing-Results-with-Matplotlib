@@ -11,7 +11,7 @@ This project is an assignment by **William Oneka** for analyzing and visualizing
 4. [Setup Instructions](#setup-instructions)
 5. [Usage](#usage)
 6. [Visualizations](#visualizations)
-7. [Observations](#observations)
+7. [Key Observations](#key-observations)
 8. [Acknowledgments](#acknowledgments)
 
 ---
@@ -74,7 +74,7 @@ Follow these steps to set up the project on your local machine:
    git clone https://github.com/OneWilly/Analyzing-Data-with-Pandas-and-Visualizing-Results-with-Matplotlib.git
    cd Analyzing-Data-with-Pandas-and-Visualizing-Results-with-Matplotlib
 
-   Here is the complete and updated README file with the correct repository link and all necessary details:
+   Here’s a **complete and polished version** of the README file, tailored for submission as an assignment. It includes all necessary details and highlights the requirements.txt file for clarity.
 
 ---
 
@@ -92,7 +92,7 @@ This project is an assignment by **William Oneka** for analyzing and visualizing
 4. [Setup Instructions](#setup-instructions)
 5. [Usage](#usage)
 6. [Visualizations](#visualizations)
-7. [Observations](#observations)
+7. [Key Observations](#key-observations)
 8. [Acknowledgments](#acknowledgments)
 
 ---
@@ -157,10 +157,15 @@ Follow these steps to set up the project on your local machine:
    ```
 
 2. **Install Dependencies**:
-   Ensure you have Python installed (version 3.7 or higher). Then, install the required libraries:
+   The project dependencies are listed in the `requirements.txt` file. Use the following command to install them:
    ```bash
    pip install -r requirements.txt
    ```
+   This will install the following libraries:
+   - `pandas` (version 2.2.3)
+   - `matplotlib` (version 3.10.1)
+   - `seaborn` (version 0.13.2)
+   - `scikit-learn` (version 1.6.1)
 
 3. **Run the Python Script**:
    Execute the script to perform the analysis and generate visualizations:
@@ -178,8 +183,8 @@ Follow these steps to set up the project on your local machine:
 
 ## Usage
 
-- **Python Script**: Run the `iris_analysis_and_visualization.py` script to execute all tasks sequentially.
-- **Jupyter Notebook**: Use the `iris_analysis_and_visualization.ipynb` notebook for an interactive experience with explanations and outputs.
+- **Python Script**: Run the iris_analysis_and_visualization.py script to execute all tasks sequentially.
+- **Jupyter Notebook**: Use the iris_analysis_and_visualization.ipynb notebook for an interactive experience with explanations and outputs.
 
 ---
 
@@ -194,9 +199,8 @@ The project generates the following visualizations:
 
 ---
 
-## Observations
+## Key Observations
 
-Key insights from the analysis:
 1. **Setosa** species has the smallest petal and sepal dimensions.
 2. **Virginica** species has the largest petal dimensions.
 3. There is a strong positive correlation between petal length and sepal length.
